@@ -4,8 +4,8 @@ Olá 👋, Meu nome é Luiz, Eu sou estudante de sistemas de informação no Cen
 
 <div style="display: inline_block">
   <a href="https://github.com/luizfmello01">
-  <img height="170em" src="https://github-readme-stats.vercel.app/api?username=luizfmello01&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
-  <img height="170em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=luizfmello01&layout=compact&langs_count=10&theme=dracula"/>
+  <img height="160em" src="https://github-readme-stats.vercel.app/api?username=luizfmello01&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
+  <img height="160em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=luizfmello01&layout=compact&langs_count=10&theme=dracula"/>
 </div>
 
 <div style="display: inline_block"><br>
