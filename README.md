@@ -1,6 +1,14 @@
-Olá 👋, Meu nome é Luiz, Eu sou estudante de sistemas de informação no Centro Universitário Avantis em Balneário Camboriú. Atualmente estou estudando ciência de dados com o objetivo de aprimorar meus conhecimentos em análise de dados e machine learning visando solucionar problemas de negócio.
+<h1>Engenheiro de Visão Computacional</h1>
+<ul>
+<li>Experiência com as linguagens Python, R e SQL;</li>
+<li>Processamento de imagem com Pillow, Skimage e OpenCV;</li>
+<li>Deep Learning para classificação, detecção e segmentação de objetos com Tensorflow e PyTorch;</li>
+<li>Machine learning com técnicas de aprendizado supervisionado e não supervisionado;</li>
+<li>Conhecimento em análise estatística (Estatística descritiva, inferencial e teste de hipótese);</li>
+<li>Visualização de dados com PowerBI e Tableau;</li>
+<li>Outras habilidades incluem Linguagem Java e C, ETL, Git, Agile, RPA e desenvolvimento web com a linguagem javascript (React, React Native e Node.JS), PHP e C#.</li>
+</ul>
 
-🔸 Desenvolvedor RPA com experiência em UiPath, mapeamento de processos (BPMN), análise de dados com as linguagens Python, R e SQL, visualização de dados com PowerBI, machine learning com aprendizado supervisionado e não supervisionado, conhecimento em análise estatística (análise exploratória de dados, teste de hipóteses e assim por diante). Tenho contribuído com a empresa automatizando, desenvolvendo e modelando processos. Além disso, tenho projetos de data science no meu repositório do github. Algumas outras habilidades que tenho incluem ETL, Git, Java, C#, PHP, Javascript e Apache Spark.
 
 <div style="display: inline_block">
   <a href="https://github.com/luizfmello01">
