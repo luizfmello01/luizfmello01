@@ -16,11 +16,13 @@ docker images | grep nginx
 # Create a directory for Nginx content
 mkdir -p ~/nginx-test
 
-# Create a simple test HTML file
+# Create a simple test HTML file with proper UTF-8 encoding
 cat > ~/nginx-test/index.html << EOF
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker Nginx Test</title>
     <style>
         body { 
@@ -45,16 +47,45 @@ cat > ~/nginx-test/index.html << EOF
     <div class="container">
         <h1>🚀 Nginx Container Test</h1>
         <p class="success">✅ Container is running successfully!</p>
-        <p>Server: $(hostname)</p>
-        <p>Date: $(date)</p>
+        <p>Server: \$(hostname)</p>
+        <p>Date: \$(date)</p>
         <p>If you can see this page, your Docker Nginx container is working correctly.</p>
     </div>
 </body>
 </html>
 EOF
+
+# Set proper file encoding
+file ~/nginx-test/index.html
 ```
 
-## Step 3: Run Nginx Container
+## Step 3: Create Nginx Configuration (Optional - for UTF-8)
+
+```bash
+# Create custom nginx configuration for proper UTF-8 handling
+mkdir -p ~/nginx-test/conf
+
+cat > ~/nginx-test/conf/default.conf << EOF
+server {
+    listen 80;
+    server_name localhost;
+    charset utf-8;
+    
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        add_header Content-Type "text/html; charset=utf-8";
+    }
+    
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}
+EOF
+```
+
+## Step 4: Run Nginx Container
 
 ### Option A: Simple Run (Basic)
 ```bash
@@ -69,17 +100,29 @@ docker run -d \
 docker ps
 ```
 
-### Option B: Run with Custom Port (Alternative)
+### Option B: Run with Custom Configuration (Recommended for UTF-8)
+```bash
+# Run with custom nginx configuration for proper UTF-8 support
+docker run -d \
+  --name nginx-test \
+  -p 80:80 \
+  -v ~/nginx-test:/usr/share/nginx/html:ro \
+  -v ~/nginx-test/conf/default.conf:/etc/nginx/conf.d/default.conf:ro \
+  nginx:1.28-alpine
+```
+
+### Option C: Run with Custom Port (Alternative)
 ```bash
 # Run on custom port (e.g., 8080) if port 80 is busy
 docker run -d \
   --name nginx-test \
   -p 8080:80 \
   -v ~/nginx-test:/usr/share/nginx/html:ro \
+  -v ~/nginx-test/conf/default.conf:/etc/nginx/conf.d/default.conf:ro \
   nginx:1.28-alpine
 ```
 
-## Step 4: Test the Container
+## Step 5: Test the Container
 
 ### Local Testing
 ```bash
@@ -106,7 +149,7 @@ ip addr show | grep inet
 # Or open in browser: http://SERVER_IP
 ```
 
-## Step 5: Firewall Configuration (if needed)
+## Step 6: Firewall Configuration (if needed)
 
 ### For UFW (Ubuntu Firewall)
 ```bash
@@ -129,7 +172,7 @@ sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 ```
 
-## Step 6: Management Commands
+## Step 7: Management Commands
 
 ```bash
 # Stop the container
@@ -154,7 +197,7 @@ docker inspect nginx-test
 docker exec -it nginx-test /bin/sh
 ```
 
-## Step 7: Verify External Access
+## Step 8: Verify External Access
 
 ### Check from outside the server:
 1. **Browser**: Open `http://YOUR_SERVER_IP` in a web browser
