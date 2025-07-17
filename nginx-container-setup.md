@@ -3,8 +3,8 @@
 ## Step 1: Pull Nginx Image
 
 ```bash
-# Pull the official Nginx image
-docker pull nginx:latest
+# Pull the official Nginx image (version 1.28 with Alpine)
+docker pull nginx:1.28-alpine
 
 # Verify the image is downloaded
 docker images | grep nginx
@@ -63,7 +63,7 @@ docker run -d \
   --name nginx-test \
   -p 80:80 \
   -v ~/nginx-test:/usr/share/nginx/html:ro \
-  nginx:latest
+  nginx:1.28-alpine
 
 # Check if container is running
 docker ps
@@ -76,7 +76,7 @@ docker run -d \
   --name nginx-test \
   -p 8080:80 \
   -v ~/nginx-test:/usr/share/nginx/html:ro \
-  nginx:latest
+  nginx:1.28-alpine
 ```
 
 ## Step 4: Test the Container
@@ -150,8 +150,8 @@ docker rm -f nginx-test
 # View container details
 docker inspect nginx-test
 
-# Execute commands inside container
-docker exec -it nginx-test /bin/bash
+# Execute commands inside container (Alpine uses sh instead of bash)
+docker exec -it nginx-test /bin/sh
 ```
 
 ## Step 7: Verify External Access
@@ -194,7 +194,7 @@ curl http://localhost
 ### Port already in use:
 ```bash
 # Use a different port
-docker run -d --name nginx-test -p 8080:80 -v ~/nginx-test:/usr/share/nginx/html:ro nginx:latest
+docker run -d --name nginx-test -p 8080:80 -v ~/nginx-test:/usr/share/nginx/html:ro nginx:1.28-alpine
 ```
 
 ## Clean Up (Optional)
@@ -208,7 +208,7 @@ docker rm nginx-test
 rm -rf ~/nginx-test
 
 # Remove Nginx image (optional)
-docker rmi nginx:latest
+docker rmi nginx:1.28-alpine
 ```
 
 That's it! Your Nginx container should now be accessible from external networks for testing connectivity.
